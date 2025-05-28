@@ -1,12 +1,11 @@
-// src/app.js
 const express = require("express");
 const sequelize = require("./config/db");
-const Cliente = require("./models/Cliente");
-const Vaga = require("./models/Vaga");
-const Pagamento = require("./models/Pagamento");
-const Reserva = require("./models/Reserva");
+const clienteRoutes = require("./routes/clienteRoutes"); // Importando as rotas de clientes
 
 const app = express();
+
+// Middleware para processar o corpo da requisição como JSON
+app.use(express.json());
 
 // Testando a conexão com o banco de dados e sincronizando as tabelas
 sequelize
@@ -27,6 +26,9 @@ sequelize
   .catch((err) => {
     console.error("Não foi possível conectar ao banco de dados:", err);
   });
+
+// Usando as rotas de cliente
+app.use("/api", clienteRoutes); // Configurando o prefixo /api para as rotas de cliente
 
 app.get("/", (req, res) => {
   res.send("Backend do Estacionamento funcionando!");
