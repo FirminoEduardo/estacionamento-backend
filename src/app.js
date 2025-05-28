@@ -1,6 +1,9 @@
 const express = require("express");
 const sequelize = require("./config/db");
-const clienteRoutes = require("./routes/clienteRoutes"); // Importando as rotas de clientes
+const clienteRoutes = require("./routes/clienteRoutes"); // Rota de Cliente
+const vagaRoutes = require("./routes/vagaRoutes"); // Rota de Vaga
+const pagamentoRoutes = require("./routes/pagamentoRoutes"); // Rota de Pagamento
+const entradaSaidaRoutes = require("./routes/entradaSaidaRoutes"); // Rota de Entrada/Saída
 
 const app = express();
 
@@ -28,7 +31,16 @@ sequelize
   });
 
 // Usando as rotas de cliente
-app.use("/api", clienteRoutes); // Configurando o prefixo /api para as rotas de cliente
+app.use("/api", clienteRoutes);
+
+// Usando as rotas de vaga
+app.use("/api", vagaRoutes); // Configurando o prefixo /api para as rotas de Vaga
+
+// Usando as rotas de pagamento
+app.use("/api", pagamentoRoutes); // Configurando o prefixo /api para as rotas de Pagamento
+
+// Usando as rotas de entrada/saída
+app.use("/api", entradaSaidaRoutes); // Configurando o prefixo /api para as rotas de Entrada/Saída
 
 app.get("/", (req, res) => {
   res.send("Backend do Estacionamento funcionando!");
