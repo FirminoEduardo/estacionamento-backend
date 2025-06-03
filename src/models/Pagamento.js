@@ -1,6 +1,6 @@
-// src/models/Pagamento.js
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db");
+const Cliente = require("./Cliente"); // Importando o modelo Cliente
 
 const Pagamento = sequelize.define("Pagamento", {
   valor: {
@@ -20,5 +20,9 @@ const Pagamento = sequelize.define("Pagamento", {
     allowNull: false,
   },
 });
+
+// Relacionando Pagamento com Cliente (relacionamento 1:N)
+Pagamento.belongsTo(Cliente, { foreignKey: "id_cliente" });
+Cliente.hasMany(Pagamento, { foreignKey: "id_cliente" });
 
 module.exports = Pagamento;

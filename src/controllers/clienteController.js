@@ -4,6 +4,9 @@ const Cliente = require("../models/Cliente");
 exports.createCliente = async (req, res) => {
   const { nome, cpf, tipo_cliente, contato } = req.body;
 
+  // Verificando se os dados foram recebidos corretamente
+  console.log("Dados recebidos no backend:", { nome, cpf, tipo_cliente, contato });
+
   // Validando os dados
   if (!nome || !cpf || !tipo_cliente) {
     return res
@@ -15,10 +18,11 @@ exports.createCliente = async (req, res) => {
     const cliente = await Cliente.create({ nome, cpf, tipo_cliente, contato });
     res.status(201).json(cliente); // Cliente criado com sucesso
   } catch (err) {
-    console.error(err);
+    console.error("Erro ao criar cliente:", err);
     res.status(500).send("Erro ao criar cliente");
   }
 };
+
 
 // Obter todos os clientes
 exports.getClientes = async (req, res) => {

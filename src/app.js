@@ -3,9 +3,11 @@ const sequelize = require("./config/db");
 const clienteRoutes = require("./routes/clienteRoutes"); // Rota de Cliente
 const vagaRoutes = require("./routes/vagaRoutes"); // Rota de Vaga
 const pagamentoRoutes = require("./routes/pagamentoRoutes"); // Rota de Pagamento
-const entradaSaidaRoutes = require("./routes/entradaSaidaRoutes"); // Rota de Entrada/Saída
+//const entradaSaidaRoutes = require("./routes/entradaSaidaRoutes"); // Rota de Entrada/Saída
 
+const cors = require('cors');
 const app = express();
+app.use(cors());
 
 // Middleware para processar o corpo da requisição como JSON
 app.use(express.json());
@@ -40,7 +42,7 @@ app.use("/api", vagaRoutes); // Configurando o prefixo /api para as rotas de Vag
 app.use("/api", pagamentoRoutes); // Configurando o prefixo /api para as rotas de Pagamento
 
 // Usando as rotas de entrada/saída
-app.use("/api", entradaSaidaRoutes); // Configurando o prefixo /api para as rotas de Entrada/Saída
+//app.use("/api", entradaSaidaRoutes); // Configurando o prefixo /api para as rotas de Entrada/Saída
 
 app.get("/", (req, res) => {
   res.send("Backend do Estacionamento funcionando!");

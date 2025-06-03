@@ -1,4 +1,5 @@
 // src/controllers/entradaSaidaController.js
+/*
 const RegistroEntradaSaida = require("../models/RegistroEntradaSaida");
 const Vaga = require("../models/Vaga");
 const Cliente = require("../models/Cliente");
@@ -47,4 +48,4 @@ exports.registrarSaida = async (req, res) => {
 const calcularValorPago = (dataEntrada, dataSaida) => {
   const tempo = (dataSaida - dataEntrada) / (1000 * 60 * 60); // tempo em horas
   return tempo * 10; // Supondo R$10,00 por hora
-};
+};*/
